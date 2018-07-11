@@ -1,0 +1,47 @@
+Create a function “length_of_tuple”, that returns the number of elements in a tuple. If they are more than 4,
+return the string “Shouldn’t you use list?”
+
+
+length_of_tuple = fn
+ {} -> 0
+ {_} -> 1
+ {_,_} -> 2
+ {_,_,_} -> 3
+ {_,_,_,_} -> 4
+  _ -> "Shouldn't you use list?"
+end
+
+--------------------------------------------------------------------------------------------------------------
+
+Write a function that takes three arguments. If the first two are zero, return “FizzBuzz.” If the first is
+zero, return “Fizz.” If the second is zero, return “Buzz.”
+Otherwise return the third argument.
+
+
+choice = fn
+ x = 0, y = 0, _ -> "FizzBuzz"
+ x = 0, _, _ -> "Fizz"
+ _, y = 0, _ -> "Buzz"
+ _, _, z -> z
+end
+
+---------------------------------------------------------------------------------------------------------------
+
+Write a function that checks if list is empty. It should return “true” if it is, and “false” otherwise.
+
+
+is_empty = fn
+ [] -> true
+ _ -> false
+end
+
+----------------------------------------------------------------------------------------------------------------
+You have a map with the following structure:
+%{first_name: "Alice", second_name: "Hemingway", age: 20}
+    
+Write a function, that when receives that map, returns the string “Hello, Alice Hemingway!”
+
+
+greeting = fn(%{first_name: name, second_name: sname, age: age}) ->
+ "Hello," <> " " <> name <> " " <> sname <> "!"
+end
