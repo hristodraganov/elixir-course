@@ -1,0 +1,74 @@
+Write a function sentence, that takes either “.”, “!”, or “?”. It should return a new function,
+that takes a second string and uses the suffix you already passed, and appends it to the second string.
+
+sentence = fn x ->
+ if x == "!" || x == "?" || x == "." do
+    fn y -> y <> x end
+ else
+ "Shouldn't you use '?', '!', or '.'?"
+ end
+end
+
+-------------------------------------------------------------------------------------------------------
+
+Given a list `[“Alice Addison”, “Bob Benetton”]`, you should (using `Enum.map`) return a list
+`[[“Alice”, “Addison”], [“Bob”, “Benetton”]]`
+
+list = ["Alice Addison", "Bob Benetton"]
+
+Enum.map(list, fn elems -> String.split(elems) end)
+
+--------------------------------------------------------------------------------------------------------
+
+Given a list `[%{name: “Alice Addison”, age: 14}, %{name: “Bob Benetton”, age: 21}, %{name: “Eve
+Elliot”, age: 18}]`, return the following list: `[“Alice Addison: 14 years old”, “Bob Benetton:
+21 years old”, “Eve Elliot: 18 years old”]`
+
+list2 = [
+%{name: “Alice Addison”, age: 14},
+%{name: “Bob Benetton”, age: 21},
+%{name: “Eve Elliot”, age: 18}
+]
+
+Enum.map(list2, fn elems -> Map.to_list(elems) end)
+
+Given the list from the previous task, made an additional case for when the age is “1”, then it
+should output “<name>: 1 year old”
+
+Enum.map(list2, fn %{name: name, age: age} ->
+                if age == 1 do
+                   name <> ": " <> "1 year old"
+                else
+                   Map.to_list(%{name: name, age: age})
+                end
+                end)
+
+---------------------------------------------------------------------------------------------------------
+
+Given the following list: [“An example sentence”, “Another sentence”, “Third sentence”], remove
+every sentence that has at least one “a”
+
+list3 = [“An example sentence”, “Another sentence”, “Third sentence”]
+
+Enum.filter(list3, fn elems -> !String.contains? elems, "a" end)
+
+---------------------------------------------------------------------------------------------------------
+
+Given the following matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9]] Double every element of it, preserving
+the structure. Make so that it doesn’t matter what size the dimensions are.
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+Enum.map(matrix, fn [x,y,z] -> [x*2, y*2, z*2] end)
+
+
+Given the matrix from the previous exercise, return only the even numbers, preserving the structure.
+
+
+Enum.filter(matrix, fn [x,y,z] ->
+                    Integer.is_even(x) ||
+                    Integer.is_even(y) ||
+                    Integer.is_even(z)
+                    end)
+
+-----------------------------------------------------------------------------------------------------------
